@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/king', function (req, res) {
-  res.send('This thing is working!');
+res.sendFile(path.join(__dirname, 'ui', 'IMG_20170709_095419_216__1503223529_14.139.187.101.jpg'));
 });
 
 app.get('/ui/style.css', function (req, res) {
