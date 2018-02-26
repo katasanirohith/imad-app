@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Samuri!!
+	</title>
+</head>
+<style >
+	body{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  visibility: hidden;
+}
+html{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+@media screen and (min-width: 1200px) {
+  body {
+    transform-origin: 50% 0%;
+    transform: scale(0.5);
+  }
+}
+
+/////SAMURAI HEAD
+
+.samuraiHeadWrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 399;
+}
+.samuraiHead {
+  transform-origin: 50% 0%;
+  transform: scale(0.8); ////This is to minimize a graphical glitch that shows up on Firefox when setting head's $baseSize less than 7 vmax
+  $baseSize: 10vmax;
+  top: $baseSize * 0.62;
+  border: $baseSize/15 solid black;
+  border-right-color: red;
+  border-left-color: red;
+  position: absolute;
+  background: #8f8f8f;
+  width: $baseSize;
+  border-radius: $baseSize/4 $baseSize/4 $baseSize/1.5 $baseSize/1.5;
+  height: $baseSize;
+  box-sizing: border-box;
+  left: calc(50% - #{$baseSize}/2);
+  text-align: center;
+  animation: growing 5s infinite;
+  z-index: -5;
+
+  .samuraiV {
+    position: absolute;
+    display: inline-block;
+    top: -$baseSize/2.4;
+    left: calc(50% - #{$baseSize}/2.4);
+    width: $baseSize/1.2;
+    height: $baseSize/1;
+    border: $baseSize/5 solid gold;
+    box-sizing: border-box;
+    background: black;
+    background-size: cover;
+    -webkit-clip-path: polygon(50% 54%, 100% 0, 50% 38%, 0 0);
+    clip-path: polygon(50% 54%, 100% 0, 50% 38%, 0 0);
+  }
+
+  .eye {
+    width: $baseSize/4;
+    position: absolute;
+    display: inline-block;
+    height: $baseSize/5;
+    top: $baseSize/4;
+    background: darkorange;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    background: #c0392b;
+    animation: glowing 5s infinite;
+  }
+
+  .leftEye {
+    left: $baseSize/9;
+  }
+
+  .rightEye {
+    right: $baseSize/9;
+  }
+
+  .mouth {
+    position: absolute;
+    display: block;
+    left: calc(50% - calc(#{$baseSize} - #{$baseSize}/8)/2);
+    bottom: 0;
+    width: calc(#{$baseSize} - #{$baseSize} / 8);
+    height: $baseSize/ 2.5;
+    background: #7f7f7f;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    transform: scale(0.98);
+  }
+
+  .armorPiece {
+    background: transparent;
+    display: block;
+    position: absolute;
+    top: -20%;
+    border: solid red;
+    border-width: $baseSize/2 $baseSize/4;
+    border-top-color: transparent;
+    overflow: hidden;
+    z-index: -3;
+  }
+
+  .leftArmor {
+    left: -55%;
+    border-left-color: transparent;
+  }
+
+  .rightArmor {
+    right: -55%;
+    border-right-color: transparent;
+  }
+
+  .helmet {
+    z-index: -1;
+    height: $baseSize/2;
+    width: calc(#{$baseSize} - #{$baseSize}/8);
+    position: absolute;
+    top: -39%;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    left: calc(50% - calc(#{$baseSize} - #{$baseSize}/8)/2);
+    border-radius: 50% 50% 0% 0%;
+    display: block;
+    background-color: red;
+    border: $baseSize/30 solid darken(gold, 20%);
+    border-right-color: transparent;
+    border-left-color: transparent;
+    box-sizing: border-box;
+  }
+
+  .neckArmor {
+    z-index: -15;
+    width: $baseSize;
+    height: $baseSize/4;
+    position: absolute;
+    left: calc(50% - calc(#{$baseSize} - #{$baseSize}/8)/2);
+    bottom: 10%;
+    background: darken(red, 10%);
+  }
+
+  &.mini {
+    z-index: 1000;
+    margin: auto;
+    bottom: 0;
+    top: 10%;
+    left: calc(50% - 3.5vmax);
+    transform: scale(0.5);
+    filter: brightness(0.5);
+    .eye {
+      background: darkorange;
+      filter: brightness(0.5);
+      animation: none;
+    }
+    @media screen and (max-width: 900px) {
+      transform: scale(0.7);
+    }
+  }
+
+  @keyframes glowing {
+    0% {
+      filter: brightness(1.5);
+    }
+    50% {
+      filter: brightness(1);
+    }
+    100% {
+      filter: brightness(1.5);
+    }
+  }
+}
+
+//////SAMURAI BODY
+.bodyAnimWrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 299;
+  &.mini {
+    z-index: 1000;
+    margin: auto;
+    bottom: 0;
+    top: -40%;
+    transform: scale(0.25);
+    filter: brightness(0.5);
+    @media screen and (max-width: 900px) {
+      top: 0%;
+    }
+  }
+}
+
+.samuraiBodyWrapper {
+  * {
+    box-sizing: border-box;
+  }
+  $baseSize: 13vmax;
+  width: $baseSize;
+  height: $baseSize * 1;
+  left: calc(50% - #{$baseSize} / 2);
+  top: 15vmax;
+  position: absolute;
+  .samuraiBody {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #3f3f3f;
+    -webkit-clip-path: polygon(0 0, 100% 0, 93% 100%, 7% 100%);
+    clip-path: polygon(0 0, 100% 0, 93% 100%, 7% 100%);
+    border-radius: 5px 5px 2px 2px;
+    .coreCover {
+      width: $baseSize / 4.5;
+      height: $baseSize / 1.7;
+      background: gray;
+      filter: brightness(0.9);
+      position: absolute;
+      top: calc(50% - #{$baseSize} / 3);
+      z-index: 200;
+      &.coreCoverLeft {
+        left: calc(50% - #{$baseSize} / 5.3);
+        border-radius: $baseSize/30 0 0 $baseSize/30;
+      }
+      &.coreCoverRight {
+        right: calc(50% - #{$baseSize} / 5.3);
+        border-radius: 0 $baseSize/30 $baseSize/30 0;
+      }
+    }
+    .core {
+      $color1: red;
+      $color2: yellow;
+      $color3: darkorange;
+      width: $baseSize / 3;
+      height: $baseSize / 2;
+      position: absolute;
+      left: calc(50% - #{$baseSize} / 6);
+      top: calc(50% - #{$baseSize} / 3.5);
+      z-index: 0;
+      border-radius: $baseSize/30;
+      overflow: hidden;
+      &.animated {
+        background: linear-gradient(90deg, $color1, $color2, $color3);
+        animation: shaking 0.15s linear infinite;
+        .coreMiddle {
+          animation: changeOpacity 0.15s linear infinite;
+          animation-delay: 0.07s;
+          background: linear-gradient(90deg, $color2, $color3, $color1);
+        }
+        .coreEnd {
+          animation: changeOpacity 0.15s linear infinite;
+          animation-delay: 0.15s;
+        }
+      }
+      .coreMiddle {
+        border-radius: $baseSize/30;
+        width: $baseSize / 3;
+        height: $baseSize / 2;
+        content: "";
+        background: darkorange;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 5;
+      }
+      .coreEnd {
+        border-radius: $baseSize/30;
+        width: $baseSize / 3;
+        height: $baseSize / 2;
+        content: "";
+        background: linear-gradient(90deg, $color3, $color1, $color2);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 4;
+      }
+    }
+  }
+  
+  .samuraiLowerBody{
+    transform-origin: 50% 0%;
+    height: 40%;
+    width: 80%;
+    left: 10%;
+    position: absolute;
+    background: #3f3f3f;
+    bottom: -35%;
+  }
+
+  $plateBG: darken(red, 5%);
+
+  .plate1 {
+    background-color: $plateBG;
+    width: 120%;
+    height: 100%;
+    position: absolute;
+    left: -10%;
+    top: 0;
+    margin: auto;
+    z-index: 10;
+    border-radius: $baseSize * 0.02;
+    .neck {
+      position: absolute;
+      content: "";
+      width: 30%;
+      left: 35%;
+      top: -30%;
+      display: block;
+      height: 30%;
+      background: #1f1f1f;
+      -webkit-clip-path: polygon(20% 39%, 80% 39%, 100% 100%, 0% 100%);
+      clip-path: polygon(20% 39%, 80% 39%, 100% 100%, 0% 100%);
+      transform-origin: 50% 100%;
+    }
+    .pad {
+      width: 60%;
+      height: 5%;
+      top: -2%;
+      background-color: darkred;
+      position: absolute;
+    }
+    .padLeft {
+      left: -40%;
+      transform: skew(5deg);
+      overflow: hidden;
+    }
+    .padRight {
+      right: -40%;
+      transform: skew(-5deg);
+    }
+    .penta {
+      width: 50%;
+      height: 50%;
+      overflow: hidden;
+      background: black;
+      border: 0.2vmax solid yellow;
+      -webkit-clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+      position: absolute;
+      left: 25%;
+      top: 25%;
+      .shi {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-radius: 50%;
+        width: 80%;
+        height: 80%;
+        left: 13%;
+        top: 15%;
+        bottom: 0%;
+        position: absolute;
+      }
+    }
+  }
+  .plate2 {
+    background-color: $plateBG;
+    width: 110%;
+    height: 60%;
+    position: absolute;
+    left: -5%;
+    top: 75%;
+    z-index: 9;
+    margin: auto;
+    -webkit-clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+    .belt {
+      left: 0;
+      width: 100%;
+      height: 30%;
+      top: 40%;
+      position: absolute;
+      background: black;
+    }
+  }
+  .backPlate {
+    filter: brightness(0.7);
+    z-index: -500;
+  }
+  .frontPlate {
+    transform: scale(1.01);
+  }
+}
+
+@keyframes changeOpacity {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shaking {
+  0% {
+    transform: translateX(0.3px) rotateY(1deg);
+  }
+  25% {
+    transform: translateX(-0.3px) rotateY(-1deg);
+  }
+  75% {
+    transform: translateX(-0.3px) rotateY(-1deg);
+  }
+  100% {
+    transform: translateX(0.3px) rotateY(1deg);
+  }
+}
+
+////////////////////////////////SAMURAI ARMS
+
+.armContainer.armContainerRight {
+  transform: rotateY(180deg);
+  left: initial;
+  right: calc(50% - 11.2vmax);
+}
+.armContainer {
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box !important;
+  }
+  position: absolute;
+  z-index: 298;
+  $baseSize: 3vmax;
+  top: 15.5vmax;
+  left: calc(50% - 11.2vmax);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  .shoulder {
+    width: $baseSize * 1.5;
+    height: $baseSize * 1.2;
+    position: absolute;
+    background: darken(red, 10%);
+    z-index: 100;
+    left: -$baseSize * 0.5;
+    .shoulderConnector {
+      position: absolute;
+      content: "";
+      background: #3f3f3f;
+      width: 100%;
+      height: 30%;
+      top: 35%;
+      right: -100%;
+      z-index: 500;
+    }
+  }
+  .shoulderJoint {
+    position: absolute;
+    width: $baseSize;
+    height: $baseSize;
+    transform-origin: 50% 50%;
+    top: $baseSize * 0.15;
+    left: -$baseSize * 0.3;
+    border-radius: 50%;
+    background: black;
+    &:after {
+      position: absolute;
+      width: 20%;
+      height: 40%;
+      content: "";
+      left: 40%;
+      bottom: -40%;
+      background: black;
+      z-index: -5;
+    }
+  }
+  .armGuard {
+    width: $baseSize * 0.9;
+    border-radius: 0.2vmax;
+    border: $baseSize * 0.05 solid gold;
+  }
+  .upperArmGuard {
+    height: $baseSize * 2.15;
+    width: $baseSize * 0.9;
+    position: absolute;
+    background: darken(red, 5%);
+    left: 5%;
+    top: $baseSize * 0.7;
+    -webkit-clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);
+    clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);
+  }
+  .elbowJoint {
+    z-index: -5;
+    $elbowSize: $baseSize * 0.9;
+    border-radius: 50%;
+    background: black;
+    width: $elbowSize;
+    height: $elbowSize;
+    position: absolute;
+    left: $baseSize * 0.05;
+    top: $baseSize * 2.7;
+  }
+  .elbowJointBack {
+    &:before {
+      position: absolute;
+      width: 20%;
+      height: 40%;
+      content: "";
+      left: 40%;
+      top: -40%;
+      background: black;
+    }
+  }
+  .elbowJointFront {
+    &:after {
+      position: absolute;
+      width: 20%;
+      height: 40%;
+      content: "";
+      left: 40%;
+      bottom: -40%;
+      background: black;
+      z-index: -5;
+    }
+    .lowerArmGuard {
+      height: $baseSize * 2.55;
+      position: absolute;
+      background: red;
+      left: 0%;
+      top: 90%;
+      border-bottom: none;
+      -webkit-clip-path: polygon(8% 0, 92% 0, 100% 100%, 0% 100%);
+      clip-path: polygon(8% 0, 92% 0, 100% 100%, 0% 100%);
+      z-index: 4;
+    }
+    .fist {
+      top: $baseSize * 3.33;
+      width: $baseSize * 1.5;
+      left: -30%;
+      height: $baseSize;
+      border: $baseSize * 0.1 solid #121212;
+      position: absolute;
+      background: darken(#3f3f3f, 5%);
+      border-radius: 0.5vmax;
+      z-index: 3;
+      .fistConnector {
+        width: 20%;
+        height: 150%;
+        position: absolute;
+        background: #3d3d3d;
+        left: 37.5%;
+        top: calc(-150% - #{$baseSize} * 0.1);
+        z-index: -1;
+      }
+      $childBorder: $baseSize * 0.03 solid black;
+      .finger {
+        position: absolute;
+        width: 25%;
+        height: 70%;
+        border: $childBorder;
+        left: 0;
+        bottom: 0;
+        z-index: -100;
+        background: lighten(#3f3f3f, 10%);
+        &:after {
+          position: absolute;
+          content: "";
+          top: 0;
+          width: 100%;
+          height: 20%;
+          background: #3f3f3f;
+        }
+        &:nth-child(2) {
+          left: 25%;
+        }
+        &:nth-child(3) {
+          left: 50%;
+        }
+        &:nth-child(4) {
+          left: 75%;
+        }
+      }
+      .thumb0 {
+        height: $baseSize * 0.5;
+        width: $baseSize * 0.5;
+        border: $childBorder;
+        border-top: none;
+        background: lighten(#3f3f3f, 10%);
+        top: 0;
+        left: $baseSize * 0.01;
+        position: absolute;
+        z-index: 55;
+        .thumb1 {
+          position: absolute;
+          content: "";
+          left: $baseSize * 0.3;
+          bottom: $baseSize * -0.03;
+          width: 100%;
+          background: lighten(#3f3f3f, 10%);
+          height: 70%;
+          border: $childBorder;
+          z-index: 10;
+          border-left: none;
+        }
+      }
+      .hilt {
+        transform-origin: 50% 5%;
+        transform: rotateZ(90deg);
+        position: absolute;
+        width: 30%;
+        left: 150%;
+        top: 40%;
+        height: $baseSize * 3;
+        background: #2f2f2f;
+        z-index: -10000;
+        border: $baseSize * 0.02 solid black;
+        border-radius: $baseSize * 0.05;
+        .hiltGuard {
+          position: absolute;
+          height: 5%;
+          width: 300%;
+          left: -100%;
+          background: black;
+          border-radius: 2%;
+          bottom: -5%;
+        }
+        .hiltDesign {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          background: black;
+          left: 0;
+          top: 0;
+          overflow: hidden;
+          .hiltPattern {
+            width: 100%;
+            height: 12%;
+            background: gold;
+            transform: rotateZ(-40deg) skew(18deg);
+            border: $baseSize * 0.1 solid black;
+            position: absolute;
+            @for $p from 1 through 8 {
+              &.hiltPattern:nth-child(#{$p}) {
+                top: (12% * $p) - 12%;
+              }
+            }
+          }
+        }
+        .blade {
+          height: $baseSize * 6;
+          width: 100%;
+          position: absolute;
+          background: #4f4f4f;
+          bottom: -207%;
+          -webkit-clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
+          transform-origin: 50% 0%;
+          .bladeDesign {
+            width: 30%;
+            height: 97%;
+            position: absolute;
+            left: 20%;
+            background: linear-gradient(90deg, black, #3f3f3f);
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 99%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 99%, 0 100%);
+            transform-origin: 50% 0%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//////SAMURAI LEG
+
+.legAnimWrap {
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
+  }
+  z-index: 298;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 32.5vmax;
+  .samuraiLegs {
+    position: absolute;
+    $baseSize: 13.9vmax;
+    width: $baseSize;
+    height: $baseSize * 0.3;
+    left: calc(50% - #{$baseSize} / 2);
+    .legToBody {
+      width: 20%;
+      height: 200%;
+      bottom: 0;
+      background: #3d3d3d;
+      left: calc(50% - 20% / 2);
+      position: absolute;
+      z-index: -50;
+    }
+    .pelvis {
+      width: 20%;
+      height: 100%;
+      background: red;
+      left: calc(50% - 20% / 2);
+      position: absolute;
+      z-index: 1;
+    }
+    .pelvisConnectors {
+      width: 70%;
+      height: 25%;
+      top: 35%;
+      left: calc(50% - 70% / 2);
+      position: absolute;
+      z-index: 0;
+      background: #3f3f3f;
+    }
+    .upperThigh {
+      width: 43%;
+      height: 150%;
+      background: darken(red, 10%);
+      position: absolute;
+      z-index: 2;
+      .lowerThigh {
+        transform-origin: 50% 0%;
+        width: 80%;
+        left: 10%;
+        top: 100%;
+        height: 110%;
+        position: absolute;
+        border-top: $baseSize * 0.01 solid yellow;
+        border-bottom: $baseSize * 0.01 solid yellow;
+        background: darken(red, 5%);
+
+        .knee {
+          width: 110%;
+          height: 20%;
+          bottom: -20%;
+          left: calc(50% - 110% / 2);
+          background: black;
+          border-radius: 25%;
+          border: $baseSize * 0.01 solid yellow;
+          position: absolute;
+          .shin {
+            transform-origin: 50% 0%;
+            height: $baseSize * 0.65;
+            width: 100%;
+            bottom: -$baseSize * 0.66;
+            position: absolute;
+            background: red;
+            z-index: 0;
+            &.rightShin {
+              border-left: $baseSize * 0.07 solid darkred;
+            }
+            &.leftShin {
+              border-right: $baseSize * 0.07 solid darkred;
+            }
+          }
+          .footWrapper {
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -10;
+          }
+          .footConnector {
+            z-index: -1;
+            background: #3d3d3d;
+            position: absolute;
+            height: $baseSize * 0.33;
+            bottom: -$baseSize * 0.75;
+            width: 35%;
+            left: calc(50% - 35% / 2);
+          }
+          .foot {
+            position: absolute;
+            width: 170%;
+            height: $baseSize * 0.25;
+            background: red;
+            bottom: -35%;
+            top: $baseSize * 0.72;
+            right: 7%;
+            transform-origin: 70% 20%;
+            border-bottom: $baseSize * 0.07 solid black;
+            border-top: $baseSize * 0.02 solid yellow;
+            -webkit-clip-path: polygon(
+              48% 0%,
+              100% 0,
+              100% 100%,
+              0 100%,
+              0 45%
+            );
+            clip-path: polygon(48% 0%, 100% 0, 100% 100%, 0 100%, 0 45%);
+            &.footRight {
+              left: 7%;
+              right: initial;
+              transform-origin: 30% 20%;
+              -webkit-clip-path: polygon(
+                48% 0,
+                100% 48%,
+                100% 100%,
+                0 100%,
+                0 0
+              );
+              clip-path: polygon(48% 0, 100% 48%, 100% 100%, 0 100%, 0 0);
+            }
+          }
+        }
+      }
+    }
+    .leftUpThigh {
+      left: -2.5%;
+      .thighShadow {
+        right: 0;
+      }
+    }
+    .rightUpThigh {
+      right: -2.5%;
+      left: initial;
+      .thighShadow {
+        left: 0;
+      }
+    }
+    .thighShadow {
+      width: 30%;
+      height: 100%;
+      position: absolute;
+      background: darkred;
+    }
+  }
+}
+
+</style>
+<body>
+<div class="samuraiHeadWrap">
+  <div class="samuraiHead">
+    <span class="samuraiV"></span>
+    <span class="leftEye eye"></span>
+    <span class="rightEye eye"></span>
+    <span class="mouth"></span>
+    <span class="leftArmor armorPiece armor"></span>
+    <span class="rightArmor armorPiece armor"></span>
+    <span class="helmet armor"></span>
+    <span class="neckArmor"></span>
+  </div>
+</div>
+
+
+<div class=bodyAnimWrap>
+  <div class="samuraiBodyWrapper">
+    <span class="backPlate plate1">
+      <span class="neck"></span>
+    </span>
+    <span class="backPlate plate2"></span>
+    <span class="samuraiBody">
+      <span class="core"><span class="coreMiddle"></span><span class="coreEnd"></span></span>
+    <span class="coreCoverLeft coreCover"></span>
+    <span class="coreCoverRight coreCover"></span>
+
+    </span>
+    <span class="samuraiLowerBody"></span>
+        <span class="frontPlate plate1">
+      <span class="pad padLeft"></span>
+    <span class="pad padRight"></span>
+    <span class="penta"><img class="shi" src="http://res.cloudinary.com/tigo/image/upload/v1507546149/death_mxqgyt.png" alt="Japanese character for death"/></span>
+    </span>
+    <span class="frontPlate plate2">
+      <span class="belt"></span>
+    </span>
+  </div>
+</div>
+
+<!-- ARMS -->
+<div class="armContainer armContainerLeft">
+  <span class="shoulder">
+    <span class="shoulderConnector"></span>
+  </span>
+  <span class="shoulderJoint">
+  <span class="upperArmGuard armGuard">
+  </span>
+  <span class="elbowJoint elbowJointBack"></span>
+  <span class="elbowJoint elbowJointFront">
+    <span class="lowerArmGuard armGuard">
+    </span>
+  <span class="fist">
+    <span class="fistConnector"></span>
+  <span class="finger"></span>
+  <span class="finger"></span>
+  <span class="finger"></span>
+  <span class="finger"></span>
+  <span class="thumb0">
+      <span class="thumb1"></span>
+  </span>
+  <span class="hilt">
+    <span class="hiltGuard"></span>
+  <span class="hiltDesign">
+        <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  </span>
+  <span class="blade">
+      <span class="bladeDesign"></span>
+  </span>
+  </span>
+  </span>
+  </span>
+  </span>
+</div>
+
+
+<div class="armContainer armContainerRight">
+  <span class="shoulder">
+    <span class="shoulderConnector"></span>
+  </span>
+  <span class="shoulderJoint">
+  <span class="upperArmGuard armGuard">
+  </span>
+  <span class="elbowJoint elbowJointBack"></span>
+  <span class="elbowJoint elbowJointFront">
+    <span class="lowerArmGuard armGuard">
+    </span>
+  <span class="fist">
+    <span class="fistConnector"></span>
+  <span class="finger"></span>
+  <span class="finger"></span>
+  <span class="finger"></span>
+  <span class="finger"></span>
+  <span class="thumb0">
+      <span class="thumb1"></span>
+  </span>
+  <span class="hilt">
+    <span class="hiltGuard"></span>
+  <span class="hiltDesign">
+      <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  <span class="hiltPattern"></span>
+  </span>
+  <span class="blade">
+      <span class="bladeDesign"></span>
+  </span>
+  </span>
+  </span>
+  </span>
+  </span>
+</div>
+
+<div class="legAnimWrap">
+  <span class="samuraiLegs">
+      <span class="legToBody"></span>
+  <span class="pelvis">
+      </span>
+  <span class="pelvisConnectors"></span>
+
+  <span class="leftUpThigh upperThigh">
+        <span class="lowerThigh">
+          <span class="thighShadow"></span>
+  <span class="knee">
+            <span class="leftShin shin">
+            </span>
+  <span class="footWrapper">
+              <span class="footConnector"></span>
+  <span class="foot footLeft"></span>
+  </span>
+  </span>
+  </span>
+  </span>
+
+  <span class="rightUpThigh upperThigh">
+        <span class="lowerThigh">
+          <span class="thighShadow"></span>
+  <span class="knee">
+            <span class="rightShin shin"></span>
+  <span class="footWrapper">
+              <span class="footConnector"></span>
+  <span class="foot footRight"></span>
+  </span>
+  </span>
+  </span>
+  </span>
+
+
+  </span>
+</div>
+</body>
+<script>
+	var samuraiHeadTL = new TimelineMax();
+
+samuraiHeadTL
+  .to("body", 1, {
+  visibility: "visible"
+})
+  .from(".samuraiHead", 1, {
+    y: "1000%",
+    display: "none"
+  })
+  .from(
+    ".helmet",
+    1,
+    {
+      y: "-1000%",
+      autoAlpha: 0,
+      ease: Power4.easeOut
+    },
+    "armorForming"
+  )
+  .from(
+    ".leftArmor",
+    1,
+    {
+      x: "-1000%",
+      autoAlpha: 0,
+      ease: Power4.easeOut
+    },
+    "armorForming"
+  )
+  .from(
+    ".rightArmor",
+    1,
+    {
+      x: "1000%",
+      autoAlpha: 0,
+      ease: Power4.easeOut
+    },
+    "armorForming"
+  )
+  .set(".samuraiV", { css: { zIndex: "-250" } })
+  .fromTo(
+    ".samuraiV",
+    1,
+    {
+      scale: "0",
+      rotationZ: "-10800deg",
+      x: "-1000%",
+      y: "-50%",
+      ease: Power4.easeOut
+    },
+    {
+      scale: "1.2",
+      rotationZ: "-1080deg",
+      x: "200%"
+    },
+    "-=.5"
+  )
+  .set(".samuraiV", { css: { zIndex: "35" } })
+  .to(".samuraiV", 0.5, {
+    scale: 1,
+    rotationZ: "0deg",
+    x: "0%",
+    y: "0%",
+    ease: Power4.easeOut
+  })
+  .from(".mouth", 1, {
+    autoAlpha: 0,
+    scale: 1.5,
+    y: "20%"
+  })
+  .set(".neckArmor", { css: { zIndex: "-5" } })
+  .from(".neckArmor", 1, {
+    y: "-40%",
+    autoAlpha: 0,
+    scale: 0
+  })
+  .to(
+    ".rightEye",
+    0,
+    {
+      rotationZ: "-18deg",
+      skew: "-18deg"
+    },
+    "-=.75"
+  )
+  .to(
+    ".leftEye",
+    0,
+    {
+      rotationZ: "18deg",
+      skew: "18deg"
+    },
+    "-=.75"
+  )
+  .from(
+    ".eye",
+    1,
+    {
+      autoAlpha: 0,
+      rotationX: "-89deg",
+      ease: Bounce.easeOut
+    },
+    "-=.75"
+  )
+  .to(".eye", 1, {
+    rotationX: "45deg",
+    backgroundColor: "#f1c40f",
+    ease: Elastic.easeOut
+  })
+  .timeScale(1.5);
+
+var samuraiBodyTL = new TimelineMax();
+
+samuraiBodyTL
+  .from(".samuraiBody", 1, {
+    scale: 1.05,
+    display: "none"
+  })
+  .from(".samuraiLowerBody", 1, {
+    rotationX: "-90deg",
+    display: "none"
+  })
+  .to(
+    ".coreCoverLeft",
+    0.5,
+    {
+      width: "0%",
+      right: "50%"
+    },
+    "coverMove"
+  )
+  .to(
+    ".coreCoverRight",
+    0.5,
+    {
+      width: "0%",
+      onStart: function() {
+        document.getElementsByClassName("core")[0].className += " animated";
+      }
+    },
+    "coverMove"
+  )
+  .from(".backPlate.plate1", 1, {
+    y: "10",
+    scale: 0.8,
+    display: "none",
+    onStart: function() {
+      document.querySelector(".legAnimWrap").style.zIndex = 301;
+      document.querySelector(".armContainerLeft").style.zIndex = 301;
+      document.querySelector(".armContainerRight").style.zIndex = 301;
+    },
+    delay: 0.25,
+    ease: Power4.easeInOut
+  })
+  .from(
+    ".backPlate.plate2",
+    1,
+    {
+      y: "-60%",
+      display: "none",
+      ease: Power4.easeInOut,
+      onStart: function() {}
+    },
+    "-=.25"
+  )
+  .from(".frontPlate.plate1", 1, {
+    y: "-0.25%",
+    onStart: function() {
+      document.querySelector(".armContainerLeft").style.zIndex = 298;
+      document.querySelector(".armContainerRight").style.zIndex = 298;
+    },
+    display: "none",
+    scale: 1.11,
+    delay: 0.25,
+    ease: Power4.easeInOut
+  })
+  .from(
+    ".frontPlate.plate2",
+    1,
+    {
+      y: "-60%",
+      display: "none",
+      ease: Power4.easeInOut,
+      onStart: function() {
+        document.querySelector(".legAnimWrap").style.zIndex = 298;
+      }
+    },
+    "-=.25"
+  )
+  .from(
+    ".padLeft",
+    1,
+    {
+      x: "40%",
+      ease: Power4.easeInOut
+    },
+    "padMove"
+  )
+  .from(
+    ".padRight",
+    1,
+    {
+      x: "-40%",
+      ease: Power4.easeInOut
+    },
+    "padMove"
+  )
+  .from(".penta", 1, {
+    rotationX: "90deg",
+    ease: Back.easeOut
+  })
+  .from(
+    ".neck",
+    0.5,
+    {
+      scale: "0"
+    },
+    "-=.15"
+  )
+  .timeScale(2.2);
+
+////ARM ANIMATION
+
+var samuraiArmTL = new TimelineMax({
+  onComplete: function() {}
+});
+samuraiArmTL
+  .from(
+    ".armContainerLeft",
+    1,
+    {
+      x: "-100%"
+    },
+    "initArms"
+  )
+  .from(
+    ".armContainerRight",
+    1,
+    {
+      x: "100%"
+    },
+    "initArms"
+  )
+  .from(
+    ".shoulderJoint",
+    1,
+    {
+      x: "-140%",
+      ease: Power4.easeInOut
+    },
+    "-=.75"
+  )
+  .from(
+    ".upperArmGuard",
+    1,
+    {
+      y: "45%",
+      ease: Power4.easeInOut
+    },
+    "-=.75"
+  )
+  .from(
+    ".armContainerLeft .elbowJoint",
+    1,
+    {
+      y: "180%",
+      ease: Bounce.easeInOut
+    },
+    "-=.75"
+  )
+  .from(
+    ".armContainerRight .elbowJoint",
+    1,
+    {
+      y: "180%",
+      ease: Elastic.easeInOut
+    },
+    "-=.75"
+  )
+  .from(
+    ".lowerArmGuard",
+    1,
+    {
+      y: "25%",
+      ease: Back.easeInOut
+    },
+    "-=.75"
+  )
+  .fromTo(
+    ".shoulderJoint",
+    0.5,
+    {
+      rotationZ: "90deg",
+      ease: Power4.easeOut
+    },
+    {
+      rotationZ: "3deg"
+    }
+  )
+  .to(".shoulderJoint", 0.5, {
+    rotationZ: "30deg",
+    ease: Power4.easeInOut
+  })
+  .to(
+    ".elbowJointFront",
+    1,
+    {
+      rotationZ: "35deg",
+      ease: Power4.easeInOut
+    },
+    "-=.75"
+  )
+  .from(
+    ".fist",
+    0.5,
+    {
+      y: "1000%",
+      ease: Power4.easeOut,
+      display: "none"
+    },
+    "-=.15"
+  )
+  .from(".blade", 0.15, {
+    scale: 0
+  })
+  .timeScale(1);
+
+samuraiLegTL = new TimelineMax({});
+samuraiLegTL
+  .from(".samuraiLegs", 1, {
+    y: "600%",
+    display: "none"
+  })
+  .from(
+    ".leftUpThigh",
+    1,
+    {
+      x: "-600%",
+      display: "none"
+    },
+    "upThigh"
+  )
+  .from(
+    ".rightUpThigh",
+    1,
+    {
+      x: "600%",
+      display: "none"
+    },
+    "upThigh"
+  )
+  .from(".lowerThigh", 1, {
+    rotationX: "-90deg"
+  })
+  .from(
+    ".shin",
+    1,
+    {
+      rotationX: "-90deg"
+    },
+    "-=0.5"
+  )
+  .fromTo(
+    ".footWrapper",
+    1,
+    {
+      y: "-600%"
+    },
+    {
+      y: "300%"
+    },
+    "footdown"
+  )
+  .from(
+    ".foot, .footConnector",
+    1,
+    {
+      display: "none"
+    },
+    "footdown"
+  )
+  .from(
+    ".footLeft",
+    1,
+    {
+      rotationZ: "-90deg"
+    },
+    "footRotate"
+  )
+  .from(
+    ".footRight",
+    1,
+    {
+      rotationZ: "90deg"
+    },
+    "footRotate"
+  )
+  .to(".footWrapper", 1, {
+    y: "0%"
+  })
+  .timeScale(1.5);
+
+var toggle = false;
+$(document).on("click", function() {
+  (toggle
+    ? () => {
+        toggle = false;
+        samuraiArmTL.reverse();
+        samuraiBodyTL.reverse();
+        samuraiHeadTL.reverse();
+        samuraiLegTL.reverse();
+      }
+    : () => {
+        toggle = true;
+        samuraiArmTL.play();
+        samuraiBodyTL.play();
+        samuraiHeadTL.play();
+        samuraiLegTL.play();
+      })();
+});
+
+</script>
+</html>

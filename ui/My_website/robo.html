@@ -1,0 +1,703 @@
+<!doctype html>
+<html>
+<!--
+  HTML + CSS courtesy of Cassidoo!
+  https://codepen.io/cassidoo/pen/WGLQak
+  Actions and animations by me
+-->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<div id="claire"></div>
+<style>
+	@bg: #e3f3ff;
+@lightblue: #52BBFC;
+@blue: #199EFC;
+@lightgray: #ECEDF2;
+@gray: #C8CCD8;
+@white: #FFF;
+@red: #FF0045;
+@darkred: #C70035;
+
+body {
+  background: @bg;
+  font-family: 'Lato', sans-serif;
+}
+
+.robot-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
+  &.is-continuous div {
+    animation-iteration-count: infinite;
+  }
+}
+
+.robothead {
+  position: relative;
+  z-index: 2000;
+  .ears {
+    width: 320px;
+    height: 48px;
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    transform: translate(-50%, 0);
+    
+    background: @white;
+    border-radius: 24px;
+    border: 1px solid @lightgray;
+    box-shadow: 0 0 15px @lightgray, inset 0 0 5px @gray;
+    z-index: 0;
+  }
+  
+  .helmet {
+    width: 280px;
+    height: 200px;
+    position: relative;
+    
+    background: @white;
+    border-radius: 100%;
+    box-shadow: 0 0 15px @gray, inset 0 0 50px 20px @lightgray;
+    z-index: 10;
+    
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 104px;
+      
+      border-top: 104px solid @blue;
+	    border-left: 24px solid transparent;
+	    border-right: 24px solid transparent;
+	    height: 0;
+	    width: 24px;
+    }
+    &:after {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 280px;
+      height: 200px;
+      
+      background: @gray;
+      border-radius: 100%;
+      
+      clip-path: inset(120px 44px 0 44px);
+    }
+  }
+  
+  .visor {
+    position: absolute;
+    left: 50%;
+    top: 104px;
+    transform: translate(-50%, 0);
+    width: 192px;
+    height: 28px;
+    z-index: 50;
+
+    background: linear-gradient(0deg, @gray, @lightgray);
+    border-radius: 0 0 100% 100%;
+    box-shadow: 0 5px 10px @lightgray;
+  }
+  
+  .face {
+    width: 280px;
+    height: 200px;
+    position: relative;
+    top: -200px;
+    z-index: 20;
+    background: @white;
+    border-radius: 100%;
+    box-shadow: inset 0 0 50px 5px @gray; 
+    clip-path: inset(120px 45px 0 45px);
+    
+    .lefteye,
+    .righteye {
+      background-color: @blue;
+      box-shadow: 0 0 5px @lightblue;
+      border-top-left-radius: 27px;
+      border-top-right-radius: 27px;
+      border-bottom: 0;
+      height: 17px;
+      position: absolute;
+      width: 22px;
+    }
+    
+    .lefteye {
+      transform: translate(80px, 140px);
+    }
+    
+    .righteye {
+      transform: translate(173px, 139px);
+    }
+  }
+}
+
+.robotbody {
+  .torso {
+    width: 144px;
+    height: 160px;
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    
+    background: @white;
+    border: 1px solid @lightgray;
+    border-radius: 100% 100% 120px 120px;
+    box-shadow: inset 0 10px 30px 5px @lightgray;
+    &:before {
+      display: block;
+      content: '';
+      width: 64px;
+      height: 64px;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      
+      border: 3px dotted @blue;
+      border-radius: 100%;
+      box-shadow: 0 0 2px @lightblue, inset 0 0 2px @lightblue;
+    }
+  }
+  .leftarm {
+    width: 48px;
+    height: 130px;
+    position: absolute;
+    top: 190px;
+    left: 50px;
+    transform: rotate(20deg);
+    
+    background: @white;
+    border-radius: 50% 0 24px 50%;
+    box-shadow: inset 0 10px 15px 5px @lightgray, 0 0 10px @lightgray;
+    
+    &:before {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      top: 50%;
+      
+      background: @gray;
+    }
+  }
+  .rightarm {
+    width: 48px;
+    height: 130px;
+    position: absolute;
+    top: 190px;
+    right: 50px;
+    transform: rotate(-20deg);
+    
+    background: @white;
+    border-radius: 0 50% 50% 24px;
+    box-shadow: inset 0 10px 15px 5px @lightgray, 0 0 10px @lightgray;
+    
+    &:before {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      top: 50%;
+      
+      background: @gray;
+    }
+  }
+  .leftleg {
+    width: 48px;
+    height: 130px;
+    position: absolute;
+    top: 250px;
+    left: 68px;
+    
+    background: @white;
+    border-radius: 0 0 15px 50%;
+    box-shadow: inset 0 10px 15px 5px @lightgray, 0 0 10px @lightgray;
+    
+    &:before {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: 36%;
+      
+      background: @gray;
+    }
+  }
+  .rightleg {
+    width: 48px;
+    height: 130px;
+    position: absolute;
+    top: 250px;
+    right: 68px;
+    
+    background: @white;
+    border-radius: 0 0 50% 15px;
+    box-shadow: inset 0 10px 15px 5px @lightgray, 0 0 10px @lightgray;
+    
+    &:before {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: 36%;
+      
+      background: @gray;
+    }
+  }
+}
+
+
+.controls {
+  display: flex;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 410%);
+}
+
+.controls__button {
+  align-items: center;
+  background: @red;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 6px @darkred;
+  color: @white;
+  cursor: pointer;
+  display: flex;
+  font-weight: 700;
+  height: 50px;
+  justify-content: center;
+  letter-spacing: 1px;
+  margin: 0 5px;
+  padding: 0 15px;
+  position: relative;
+  text-transform: uppercase;
+  
+  &:hover:not(.is-active) {
+    box-shadow: 0 4px @darkred;
+    top: 2px;
+  }
+  
+  &:active,
+  &.is-active {
+    box-shadow: 0 0 @darkred;
+    top: 6px;
+  }
+}
+
+.button {
+  display: flex;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 545%);
+}
+
+/*
+  PATTY'S ANIMATIONS
+*/
+
+.tilt-hello {
+  .lefteye,
+  .righteye {
+    animation: squintEyes 2s infinite ease-out;
+  }
+  
+ .robothead {
+    animation: tiltHead 2s infinite ease-out;
+  }
+  
+  .leftarm {
+    animation: leftArmUp 2s infinite ease-out;
+  }
+}
+
+.the-wave {
+  .leftarm {
+    animation: leftArmWave 1s infinite ease-out;
+  }
+
+  .rightarm {
+    animation: rightArmWave 1s infinite ease-out;
+  }
+}
+
+.laughing {
+  .robothead {
+    animation: headShrug 750ms infinite ease-out;
+  }
+  
+  .lefteye,
+  .righteye {
+    animation: squintEyes 2s infinite ease-out;
+  }
+  
+  .leftarm {
+    animation: leftArmUp 2s infinite ease-out;
+  }
+  
+  .rightarm {
+    animation: rightArmUp 2s infinite ease-out;
+  }
+}
+
+.take-off {
+  &.robot-container {
+    animation: fullBodyJump 2.5s infinite;
+  }
+  
+  .lefteye,
+  .righteye {
+    animation: squintEyes 2.5s infinite ease-out;
+  }
+  
+  .leftarm {
+    animation: leftArmJumpLand 2.5s infinite;
+  }
+
+  .rightarm {
+    animation: rightArmJumpLand 2.5s infinite;
+  }
+  
+  .leftleg,
+  .rightleg {
+    animation: legsJumpLand 2.5s infinite;
+  }
+}
+
+.cart-wheel {
+  &.robot-container {
+    animation: fullBodyWheel 4.5s infinite;
+  }
+  
+  .lefteye,
+  .righteye {
+    animation: squintEyes 4.5s infinite;
+  }
+  
+  .leftarm {
+    animation: leftArmCartWheel 4.5s infinite;
+  }
+  
+  .rightarm {
+    animation: rightArmCartWheel 4.5s infinite;
+  }
+  
+  .rightleg {
+    animation: rightLegCartWheel 4.5s infinite;
+  }
+  
+  .leftleg {
+    animation: leftLegCartWheel 4.5s infinite;
+  }
+}
+
+.shrug {
+  .robothead {
+    animation: headShrug 2s ease-out infinite;
+  }
+  
+  .lefteye,
+  .righteye {
+    animation: squintEyes 2s ease-out infinite;
+  }
+  
+  .leftarm {
+    animation: armShrug 2s ease-out infinite;
+  }
+  
+  .rightarm {
+    animation: armShrug 2s ease-out infinite;
+  }
+}
+
+
+/*
+  Full body actions
+*/
+@keyframes fullBodyJump {
+  0% { top: 50% }
+  10% { top: 50% }
+  85% { top: 15% }
+  100% { top: 50% }
+}
+
+@keyframes fullBodyWheel {
+  15% { transform: translate(-50%, -50%) rotate(0deg) }
+  85% { transform: translate(50%, -50%) rotate(360deg) }
+}
+
+
+/*
+  Head Actions
+*/
+@keyframes tiltHead {
+  50% { transform: rotate(20deg); }
+}
+
+@keyframes headShrug {
+  50% { transform: translateY(15px) };
+}
+
+@keyframes squintEyes {
+  50% { height: 10px; }
+}
+
+
+/*
+  Arm Actions
+*/
+@keyframes leftArmUp {
+  50% {
+    transform: rotate(100deg) translate(-50px, 20px);
+    border-radius: 0 50% 50% 24px;
+  }
+}
+@keyframes rightArmUp {
+  50% {
+    transform: rotate(-100deg) translate(50px, 20px);
+    border-radius: 50% 0 24px 50%;
+  }
+}
+
+@keyframes leftArmWave {
+  25% {
+    transform: rotate(100deg) translate(-50px, 20px);
+    border-radius: 0 50% 50% 24px;
+  }
+}
+@keyframes rightArmWave {
+  75% {
+    transform: rotate(-100deg) translate(50px, 20px);
+    border-radius: 50% 0 24px 50%;
+  }
+}
+
+@keyframes leftArmJumpLand {
+  0% {
+    transform: rotate(20deg) translate(0);
+  }
+  10% { 
+    transform: rotate(100deg) translate(-50px, 20px);
+    border-radius: 0 50% 50% 24px;
+  }
+  25% { 
+    transform: rotate(20deg) translate(0);
+    border-radius: 50% 0 24px 50%;
+  }
+  85% {
+    transform: rotate(20deg) translate(0);
+    border-radius: 50% 0 24px 50%;
+  }
+  85% {
+    transform: rotate(100deg) translate(-50px, 20px);
+    border-radius: 0 50% 50% 24px;
+  }
+  100% { 
+    transform: rotate(20deg) translate(0);
+    border-radius: 50% 0 24px 50%;
+  }
+}
+@keyframes rightArmJumpLand {
+  0% {
+    transform: rotate(-20deg) translate(0);
+  }
+  10% { 
+    transform: rotate(-100deg) translate(50px, 20px);
+    border-radius: 50% 0 24px 50%;
+  }
+  25% { 
+    transform: rotate(-20deg) translate(0);
+    border-radius: 0 50% 50% 24px;
+  }
+  85% {
+    transform: rotate(-20deg) translate(0);
+    border-radius: 0 50% 50% 24px;
+  }
+  85% {
+    transform: rotate(-100deg) translate(50px, 20px);
+    border-radius: 50% 0 24px 50%;
+  }
+  100% { 
+    transform: rotate(-20deg) translate(0);
+    border-radius: 0 50% 50% 24px;
+  }
+}
+
+
+@keyframes leftArmCartWheel {
+  5% {
+    transform: rotate(20deg) translate(0);
+    border-radius: 50% 0 24px 50%;
+  }
+  10% {
+    transform: rotate(100deg) translate(-50px, 20px);
+    border-radius: 0 50% 50% 24px;
+  }
+  85% {
+    transform: rotate(100deg) translate(-50px, 20px);
+    border-radius: 0 50% 50% 24px;
+  }
+  100% {
+    transform: rotate(20deg) translate(0);
+    border-radius: 50% 0 24px 50%;
+  }
+}
+@keyframes rightArmCartWheel {
+  5% {
+    transform: rotate(-20deg) translate(0);
+    border-radius: 0 50% 50% 24px;
+  }
+  10% {
+    transform: rotate(-100deg) translate(50px, 20px);
+    border-radius: 50% 0 24px 50%;
+  }
+  85% {
+    transform: rotate(-100deg) translate(50px, 20px);
+    border-radius: 50% 0 24px 50%;
+  }
+  100% {
+    transform: rotate(-20deg) translate(0);
+    border-radius: 0 50% 50% 24px;
+  }
+}
+
+
+@keyframes armShrug {
+  50% { top: 170px }
+}
+
+
+
+/*
+  Leg Actions
+*/
+@keyframes legsJumpLand {
+  0% { top: 250px; }
+  10% { top: 230px; }
+  25% { top: 260px; }
+  85% { top: 260px; }
+  100% { top: 250px; }
+}
+
+@keyframes rightLegCartWheel {
+  5% { transform: rotate(0deg); }
+  10% { transform: rotate(-30deg); }
+  85% { transform: rotate(0deg); }
+}
+
+@keyframes leftLegCartWheel {
+  5% { transform: rotate(0deg); }
+  10% { transform: rotate(0deg); }
+  85% { transform: rotate(30deg); }
+}
+</style>
+<title>
+	welcome;
+</title>
+<body>
+	hello;
+</body>
+<script >
+	const COMMANDS = [{
+  label: "Say Hello",
+  value: "tilt-hello"
+}, {
+  label: "The Wave",
+  value: "the-wave"
+}, {
+  label: "Laugh",
+  value: "laughing"
+}, {
+  label: "Take Off!",
+  value: "take-off"
+}, {
+  label: "Cart Wheel",
+  value: "cart-wheel"
+}, {
+  label: "Shrug",
+  value: "shrug"
+}];
+
+const Controls = ({ onClickCommand, selectedClass }) => (
+  <div className="controls">
+    {
+      COMMANDS.map(command => {
+        const buttonClass = command.value === selectedClass ? "is-active" : "";
+        return (
+          <div
+            className={`controls__button ${buttonClass}`}
+            onClick={ () => onClickCommand(command.value) }
+           >
+            { command.label }
+           </div>
+        );
+      })
+    }
+  </div>
+);
+
+class Claire extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedClass: "",
+      continuous: false
+    };
+    this.onClickCommand = this.onClickCommand.bind(this);
+  }
+  
+  onClickCommand(command) {
+    const { selectedClass } = this.state;
+    const newSelectedClass = selectedClass === "" || command !== selectedClass ? command : "";
+    this.setState({
+      selectedClass: newSelectedClass
+    });
+    
+  }
+  
+  render() {
+    const { selectedClass } = this.state;
+    
+    return (
+      <div>
+        <div className={`robot-container ${selectedClass}`}>
+          <div className="robothead">
+            <div className="ears"></div>
+            <div className="helmet"></div>
+            <div className="visor"></div>
+            <div className="face">
+              <div className="lefteye"></div>
+              <div className="righteye"></div>
+            </div>
+          </div>
+
+          <div className="robotbody">
+            <div className="leftarm"></div>
+            <div className="rightarm"></div>
+            <div className="leftleg"></div>
+            <div className="rightleg"></div>
+            <div className="torso"></div>
+          </div>
+        </div>
+        
+        <Controls
+          onClickCommand={this.onClickCommand}
+          selectedClass={selectedClass}
+        />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Claire />, document.getElementById('claire'));
+</script>
+</html>
