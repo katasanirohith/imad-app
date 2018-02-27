@@ -12,7 +12,11 @@ app.get('/', function (req, res) {
 app.get('/king', function (req, res) {
 res.sendFile(path.join(__dirname, 'ui', 'IMG_20170709_095419_216__1503223529_14.139.187.101.jpg'));
 });
-
+var counter=0;
+app.get('/counter',function (req,res) {
+    counter=counter+1;
+    res.send(counter.toString());
+});
 app.get('/rohith', function (req, res) {
 res.sendFile(path.join(__dirname, 'ui','My_website', 'javascript_1.html'));
 });
