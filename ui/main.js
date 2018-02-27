@@ -1,5 +1,6 @@
 console.log('Loaded!');
 console.log('Yes!');
+console.log('Yes!');
 var element= document.getElementById('maintext');
 element.innerHTML='Under construction';
 var img= document.getElementById('madi');
