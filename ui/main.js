@@ -6,11 +6,11 @@ element.innerHTML='This website is under Construction By King. Please wait for f
 console.log('Yes!');
 var img= document.getElementById('madi');
 console.log('Yes!');
-var marginleft=0;
+var marginLeft=0;
 function moveright()
 {
-    marginleft=marginleft+5
-    img.style.marginleft=marginleft+'px';
+    marginLeft=marginLeft+5
+    img.style.marginLeft=marginLeft+'px';
 }
 img.onclick = function(){
     var interval=setInterval(moveright,'50');
