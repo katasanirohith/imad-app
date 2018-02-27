@@ -14,7 +14,7 @@ res.sendFile(path.join(__dirname, 'ui', 'IMG_20170709_095419_216__1503223529_14.
 });
 
 app.get('/rohith', function (req, res) {
-res.sendFile(path.join(__dirname, 'ui', 'javascript_1.html'));
+res.sendFile(path.join(__dirname, 'ui','My_website', 'javascript_1.html'));
 });
 
 app.get('/article-one', function (req, res) {
